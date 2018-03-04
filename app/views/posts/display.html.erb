@@ -1,0 +1,6 @@
+<h1>Mon blog</h1>
+<p>Bienvenue sur mon blog ! </p>
+
+<% @articles.each do |article| %>
+    <a href="/post/<%= article.id %>"><%= article.title %></a>
+<% end %>
