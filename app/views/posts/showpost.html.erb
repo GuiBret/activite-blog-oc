@@ -2,3 +2,21 @@
 
 <a href="/">Retourner à l'index</a>
 <p><%= @article.content %></p>
+
+<% if @comments.size == 0 %>
+    <p>Il n'y a aucun commentaire pour cet article.</p>
+<% else %>
+    <p>Voici les commentaires :</p>
+    <% @comments.each do |comment| %>
+        <p>Ecrit par <b><%= comment.author %></b> : </p>
+        <p><%= comment.content %></p>
+    <% end %>
+<% end %>
+<h2>Ajouter un commentaire
+<%= form_tag "/addcomment", method: 'post' do -%>
+        <input type="hidden" name="post_id" value="<%= @article.id %>" />
+        <input type="text" placeholder="Entrez votre nom" name="nom" />
+        <textarea style="display:block;" name='commentaire'></textarea>
+        <input type='submit' value="Envoyer le commentaire" />
+
+<% end %>
